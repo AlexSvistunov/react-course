@@ -1,30 +1,32 @@
 import {Header} from './Components/Header/Header'
-// import List from './Components/List/List'
+import { ways } from './data';
+import WayToTeach from './Components/WayToTeach/WayToTeach'
+import Button from './Components/Button/Button'
+import './Components/Button/Button.css'
+import { useState } from 'react'
 
-function WayToTeach({strong, text}) {
-  return (
-    <li>
-      <strong>{strong}</strong> {text}
-
-    </li>
-  )
-}
 
 function App() {
+  let [content, setContent] = useState('Первый контент');
+  function handleClick(type) {
+    setContent(type)
+  }
+
   return (
     <div>
       <Header>I'm a header(1)</Header>
-      <Header>Бебрик)</Header>
       <h1>Hello React</h1>
       <main>
-            {/* <List strong="Заголовок1" text="Описание 1" /> */}
             <ul>
-              <WayToTeach strong="Заголовок1" text="Текст1"/>
-              <WayToTeach strong="Заголовок2" text="Текст2"/>
-              <WayToTeach strong="Заголовок3" text="Текст3"/>
-
-              {/* поработать именно с массивом который уже есть */}
+              <WayToTeach {... ways[0]}/>
+              <WayToTeach { ...ways[1]}/>
+              <WayToTeach { ...ways[2]}/>
             </ul>
+            
+            <Button onClick={() => handleClick('Первый контент')}>Первая кнопка</Button>
+            <Button onClick={() => handleClick('Второй контент')}>Вторая кнопка</Button>
+            <Button onClick={() => handleClick('Третий контент')}>Третья кнопка</Button>
+            <p>{ content }</p>
         </main>
     </div>
   );
